@@ -1,0 +1,1 @@
+<?php$indiv[] = new Individu("Martineau","Aurélien");$indiv[] = new Individu("Flamant","Mathieu");?>
