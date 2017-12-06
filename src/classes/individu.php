@@ -12,7 +12,7 @@ class Individu
 
     public function infosIndividu() 
     {
-        return "Pr&eacute;nom : ". $this->_firstName ." Nom : ". $this->_lastName;
+        return $this->_lastName." ".$this->_firstName;
     }
 
     public function setNom($Lname)
