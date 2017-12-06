@@ -90,7 +90,7 @@ require_once("pers/personnes.php");
 			<?php
 			echo 'machaine="";'.chr(13);
 			echo 'envoi="valeurA="+nbReste;'.chr(13);
-			foreach($indiv as $key => $individu) {
+			foreach ($indiv as $key => $individu) {
 				$val="document.monForm.cle".$key.".checked";
 				echo "val".$key."=".$val.";".chr(13);
 				echo 'envoi+="& cle'.$key.'=" + val'.$key.";".chr(13);
@@ -101,10 +101,11 @@ require_once("pers/personnes.php");
 			//echo "alert(envoi);";
 			echo 'xhr.send(envoi);'.chr(13);
 			?>
-			if(nbTour<=valA) {
+			if (nbTour <= valA) {
 				myVar = setTimeout(function(){appelAjax()}, 500);
 				document.getElementById('nbTourRestant').innerHTML=valA-nbTour;
 				nbTour=nbTour+1;
+				fin = false;
 			}
 			else {
 				document.getElementById('nbTourRestant').style.fontSize="1.2em";
@@ -137,7 +138,7 @@ require_once("pers/personnes.php");
 		echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().'<input type="hidden" name="nbFois'.$key.'" size=1><br/>';
 		}
 		?>
-		<input type="text" name="champsA" value="10">
+		<input type="text" name="champsA" value="3">
 		<input type="submit"value="Go" onClick="appelAjax(); return false;">
 		<input type="Button" value="Stop" onClick="stopProg();">
 		<input type="reset" value="Reset" onClick="stopProg();">
