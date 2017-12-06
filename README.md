@@ -27,7 +27,7 @@ Install [Wamp](http://www.wampserver.com/en/#download-wrapper)
 
 With a terminal go in `wamp/www` folder and type:
 
-`git clone https://github.com/mgemard/progAlea.git`
+`git clone https://github.com/unareil/progAlea.git`
 
 Go to [http://localhost/progAlea/src/](http://localhost/progAlea/src/)
 
