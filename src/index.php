@@ -26,7 +26,9 @@ font-size:500%;
 // on supprime tous les objets xhr qui trainent...
 var xhr = null;
 var myVar;
-var nbTour=0;
+var nbTour = 0;
+var nbAleatoire = 0;
+var fin = false;
 /**
 * fonction qui permet de creer l'objet ajax (appela ici xhr)
 */
@@ -76,6 +78,11 @@ xhr.onreadystatechange = function()
 		/* On remplit l'element de la page en cours appellee (document) qui a un formulaire qui s'appelle monForm et 			un element appele champsA */
 		document.getElementById('affiche').innerHTML = laReponse;
 		eval(document.getElementById("runscript").innerHTML);
+		if (fin==true)
+		{
+			machaine="document.monForm.cle"+nbAleatoire+".checked=false;";
+			eval(machaine);
+		}
 	}
 }
 // Ici on ouvre la page ajax ou l'on souhaite traiter l'information
@@ -115,7 +122,8 @@ document.getElementById('nbTourRestant').style.fontWeight="bold";
 document.getElementById('nbTourRestant').style.right="300px";
 document.getElementById('nbTourRestant').innerHTML="Le candidat &agrave; passer au tableau est en gras et en rouge";
 stopProg();
-nbTour=0;
+nbTour = 0;
+fin = true;
 }
 
 }
