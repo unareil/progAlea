@@ -19,7 +19,7 @@ Une fois terminé :
 
 `docker ps` pour voir les processus qui tournent.
 
-`kill <<process>>` pour terminé le processus.
+`kill <<process>>` pour terminer le processus.
 
 ## To run with wamp
 
