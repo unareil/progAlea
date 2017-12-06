@@ -12,3 +12,7 @@ Open a bash terminal (Git bash is fine for Windows) and type:
 `./run.bash`
 
 Go to [localhost:80](http://localhost:80)
+
+## Style guide 
+
+[PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
