@@ -129,6 +129,7 @@ require_once("pers/personnes.php");
 
             function stopProg() {
                 clearTimeout(myVar);
+				document.getElementById("go").disabled = false;
             }
 
             function resetProg() {
@@ -151,7 +152,7 @@ require_once("pers/personnes.php");
 		}
 		?>
 		<input type="text" name="champsA" value="3">
-		<input type="submit"value="Go" onClick="appelAjax(); return false;" id="go">
+		<input type="submit" value="Go" onClick="appelAjax(); return false;" id="go">
 		<input type="Button" value="Stop" onClick="stopProg();" id="pause">
 		<input type="reset" value="Reset" onClick="stopProg();" id="reinit">
 		</form>
