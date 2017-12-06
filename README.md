@@ -15,6 +15,11 @@ Open a bash terminal (Git bash is fine for Windows) and type:
 
 Go to [localhost:80](http://localhost:80)
 
+Une fois terminé :
+
+'docker ps' pour voir les processus qui tourne.
+
+'kill <<process>>' pour terminé le processus.
 
 ## To run with wamp
 
