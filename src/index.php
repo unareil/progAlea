@@ -61,6 +61,7 @@ require_once("pers/personnes.php");
 			function appelAjax()
 			{
 				document.getElementById("go").disabled = true;
+				document.getElementById("pause").disabled = false;
 				document.getElementById("reinit").disabled = true;
 				getXhr();
 				// On definit ce qu'on va faire quand on aura la reponse
@@ -130,13 +131,11 @@ require_once("pers/personnes.php");
             function stopProg() {
                 clearTimeout(myVar);
 				document.getElementById("go").disabled = false;
+				document.getElementById("pause").disabled = true;
             }
 
             function resetProg() {
 				
-				stopProg();
-                nbTour = 0;
-				fin = true;
 				document.getElementById('affiche').innerHTML = "";
 				document.getElementById('nbTourRestant').innerHTML = "";
             }
@@ -154,7 +153,7 @@ require_once("pers/personnes.php");
 		<input type="text" name="champsA" value="3">
 		<input type="submit" value="Go" onClick="appelAjax(); return false;" id="go">
 		<input type="Button" value="Stop" onClick="stopProg();" id="pause">
-		<input type="reset" value="Reset" onClick="stopProg();" id="reinit">
+		<input type="reset" value="Reset" onClick="resetProg();" id="reinit">
 		</form>
 		<div id="affiche">&nbsp;</div>
 		<div id="nbTourRestant">&nbsp;</div>
