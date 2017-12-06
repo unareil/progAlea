@@ -1,6 +1,8 @@
 # progAlea
 Program assign a random person
 
+Pour lancer un serveur local, vous pouvez soit installer docker ou wamp :
+
 ## To run with docker
 
 Install [Docker](https://docs.docker.com/engine/installation/)
