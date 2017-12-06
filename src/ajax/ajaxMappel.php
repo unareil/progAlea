@@ -31,6 +31,7 @@ foreach($indiv as $key => $individu) {
 	if ($key == $numAlea) {
 		echo '<script type="text/javascript" id="runscript">'.chr(13);
 		echo 'document.monForm.nbFois'.$key.'.value=Number(document.monForm.nbFois'.$key.'.value)+1'.chr(13);
+		echo 'nbAleatoire='.$numAlea.';';
 		echo '</script>'.chr(13);
 		echo "<b style='color:red;'>".$key." ".$individu->infosIndividu()."</b>"."<br/>";
 	}
