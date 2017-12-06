@@ -17,9 +17,9 @@ Go to [localhost:80](http://localhost:80)
 
 Une fois terminé :
 
-'docker ps' pour voir les processus qui tourne.
+`docker ps` pour voir les processus qui tournent.
 
-'kill <<process>>' pour terminé le processus.
+`kill <<process>>` pour terminé le processus.
 
 ## To run with wamp
 
