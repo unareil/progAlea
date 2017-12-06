@@ -44,12 +44,12 @@ else if(window.ActiveXObject)
         xhr = new ActiveXObject("Msxml2.XMLHTTP");
       } catch (e) {
              xhr = new ActiveXObject("Microsoft.XMLHTTP");
-	           }
+               }
 }
 else
 { // XMLHttpRequest non supporte par le navigateur
-	alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
-	xhr = false;
+    alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
+    xhr = false;
 }
 }
 /* fin de la fonction qui permet de creer l'objet ajax (appele ici xhr) */
@@ -60,30 +60,30 @@ else
 function sansEnvoi()
 {
 
-	event.preventDefault();
-	appelAjax;
-	}
+    event.preventDefault();
+    appelAjax;
+    }
 function appelAjax()
 {
 getXhr();
 // On definit ce qu'on va faire quand on aura la reponse
 xhr.onreadystatechange = function()
 {
-	// On ne fait quelque chose que si on a tout recupere et que le serveur est ok
-	if(xhr.readyState == 4 && xhr.status == 200)
-	{
-		// recoit la reponse de ajax et stocke la valeur dans laReponse
+    // On ne fait quelque chose que si on a tout recupere et que le serveur est ok
+    if(xhr.readyState == 4 && xhr.status == 200)
+    {
+        // recoit la reponse de ajax et stocke la valeur dans laReponse
 
-		laReponse = xhr.responseText;
-		/* On remplit l'element de la page en cours appellee (document) qui a un formulaire qui s'appelle monForm et 			un element appele champsA */
-		document.getElementById('affiche').innerHTML = laReponse;
-		eval(document.getElementById("runscript").innerHTML);
-		if (fin==true)
-		{
-			machaine="document.monForm.cle"+nbAleatoire+".checked=false;";
-			eval(machaine);
-		}
-	}
+        laReponse = xhr.responseText;
+        /* On remplit l'element de la page en cours appellee (document) qui a un formulaire qui s'appelle monForm et             un element appele champsA */
+        document.getElementById('affiche').innerHTML = laReponse;
+        eval(document.getElementById("runscript").innerHTML);
+        if (fin==true)
+        {
+            machaine="document.monForm.cle"+nbAleatoire+".checked=false;";
+            eval(machaine);
+        }
+    }
 }
 // Ici on ouvre la page ajax ou l'on souhaite traiter l'information
 xhr.open("POST","ajax/ajaxMappel.php",true);
