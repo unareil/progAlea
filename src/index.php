@@ -9,6 +9,7 @@
             position:absolute;
             top:80px;
             left:600px;
+            line-height: 0.3;
         }
         #nbTourRestant {
             position:absolute;
@@ -97,8 +98,6 @@
                         document.getElementById('affiche').innerHTML = laReponse;
                         eval(document.getElementById("runscript").innerHTML);
                         if (fin==true) {
-                            machaine="document.monForm.cle"+nbAleatoire+".checked=false;";
-                            eval(machaine);
                             document.getElementById("go").disabled = false;
                             document.getElementById("reinit").disabled = false;
 
@@ -106,21 +105,23 @@
                             persmax = 0;
                             for (i = 0; i < maxnbpers; i++) 
                             {
-                                machaine = "val = personne"+i+".nbiteration;";
-                                eval(machaine);
+                                eval("val = personne"+i+".nbiteration;");
                                 if (val > valmax)
                                 {
                                     valmax = val;
                                     persmax = i;
                                 }
+                                eval("personne"+i+".nbiteration = 0;");
                             }
                             if (persmax != nbAleatoire)
                             {
                                 document.getElementById("selection").style.color = "black";
-                                machaine = 'document.getElementById("nom'+persmax+'").style.color="red";';
-                                eval(machaine);
-                                machaine = 'document.getElementById("nom'+persmax+'").style.fontWeight="bold";';
+                                eval('document.getElementById("nom'+persmax+'").style.color="red";');
+                                eval('document.getElementById("nom'+persmax+'").style.fontWeight="bold";');
                             } 
+                            eval("document.monForm.cle"+persmax+".checked=false;");
+                            machaine="Le candidat est "+eval("personne"+persmax+".nom")+" "+eval("personne"+persmax+".prenom")+" sélectionnée "+valmax+" fois.";
+                            eval('document.getElementById("nbTourRestant").innerHTML = machaine;');
                         }
                     }
                 }
@@ -159,7 +160,6 @@
                     document.getElementById('nbTourRestant').style.fontSize="1.2em";
                     document.getElementById('nbTourRestant').style.fontWeight="bold";
                     document.getElementById('nbTourRestant').style.right="300px";
-                    document.getElementById('nbTourRestant').innerHTML="Le candidat &agrave; passer au tableau est en gras et en rouge";
                     stopProg();
                     nbTour = 0;
                     fin = true;
