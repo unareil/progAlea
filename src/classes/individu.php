@@ -54,6 +54,11 @@
             $this->_iteration = $num;
         }
 
+        public function incrementeIteration()
+        {
+            $this->_iteration = $this->_iteration + 1;
+        }
+
         public function getNbSelection()
         {
             return $this->_nbSelection;

@@ -12,7 +12,7 @@
             $monTab[] = $key;
         }
         $valeur = "nbFois".$key;
-        $indiv[$key]->setIteration($_POST[$valeur]);
+        $indiv[$key] -> setIteration($_POST[$valeur]);
     }
     //var_dump($monTab[]);
     //echo "toto";
@@ -29,15 +29,19 @@
         $numAlea=9;
     }
     */
+
+
     echo '<div id="divisionReponse">'.chr(13);
 
     foreach($indiv as $key => $individu)
     {
-        if ($key == $numAlea) {
+        if ($key == $numAlea) 
+        {
             echo '<script type="text/javascript" id="runscript">'.chr(13);
-            echo 'document.monForm.nbFois'.$key.'.value=Number(document.monForm.nbFois'.$key.'.value)+1'.chr(13);
-            echo 'nbAleatoire='.$numAlea.';';
+            $indiv[$numAlea]->incrementeIteration();
             echo 'personne'.$numAlea.'.augmenteNbiteration();';
+            echo 'document.monForm.nbFois'.$numAlea.'.value='.$indiv[$numAlea]->getIteration().chr(13);
+            echo 'nbAleatoire='.$numAlea.';';
             echo '</script>'.chr(13);
             echo "<p id='selection' style='color:red;'>".$key." ".$individu->infosCandidat()."</p>";
         }

@@ -107,7 +107,7 @@
                         /* On remplit l'element de la page en cours appellee (document) qui a un formulaire qui s'appelle monForm et             un element appele champsA */
                         document.getElementById('affiche').innerHTML = laReponse;
                         eval(document.getElementById("runscript").innerHTML);
-                        if (fin==true) 
+                        if (fin == true) 
                         {
                             document.getElementById("go").disabled = false;
                             document.getElementById("reinit").disabled = false;
@@ -132,7 +132,7 @@
                             } 
                             eval("document.monForm.cle"+persmax+".checked=false;");
                            
-                            machaine="Le candidat est "+eval("personne"+persmax+".nom")+" "+eval("personne"+persmax+".prenom")+" sélectionnée "+valmax+" fois.";
+                            machaine="Le candidat est "+eval("personne"+persmax+".nom")+" "+eval("personne"+persmax+".prenom")+" <small>(sélectionné "+valmax+" fois)</small>.";
                             eval('document.getElementById("nbTourRestant").innerHTML = machaine;');
                         }
                     }
@@ -163,7 +163,7 @@
                 ?>
                 if (nbTour < valA) 
                 {
-                    myVar = setTimeout(function(){appelAjax()}, 500);
+                    myVar = setTimeout(function(){appelAjax()}, 300);
                     document.getElementById('nbTourRestant').innerHTML=valA-nbTour;
                     nbTour = nbTour + 1;
                     fin = false;
