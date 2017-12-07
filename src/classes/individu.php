@@ -40,7 +40,7 @@
 
         public function infosCandidat() 
         {
-            return $this->_lastName." ".$this->_firstName." (".$this->_iteration.")";
+            return $this->_lastName." ".$this->_firstName;
         }
 
         public function setNom($Lname)
@@ -133,6 +133,8 @@
             // Ajoute l'objet au tableau d'objet
             //echo 'tabIndivdu.push(personne'.$num.')'.chr(13);
         }
+
+
 
         public function __destruct()
         {
