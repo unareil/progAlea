@@ -1,37 +1,32 @@
 <?php
     require_once("../classes/individu.php");
-    require_once("../pers/personnes.php");
-    $monTab[] = -1;
-    //var_dump($_POST);
+    $monTab[] =-1;
 
-    foreach ($indiv as $key => $individu)
+    $maxnbpers = $_POST["maxnbpers"];
+
+
+    // Recopie les objets du javascript
+    for ($i = 0; $i <= $maxnbpers; $i++) 
     {
-        $valeur = "cle".$key;
-        if($_POST[$valeur] == "true")
+        $objet="personne".$i;
+        $nom=$objet."nom";
+        $prenom=$objet."prenom";
+        $nbiteration=$objet."nbiteration";
+        $nombreSelection=$objet."nombreSelection";
+        $cocheTF=$objet."cocheTF";
+        if(isset($_POST[$nom]))
         {
-            $monTab[] = $key;
+            $indiv[] = new Individu($_POST[$nom],$_POST[$prenom],$_POST[$nbiteration],$_POST[$nombreSelection],$_POST[$cocheTF]);
+            $monTab[]=$i;
         }
-        $valeur = "nbFois".$key;
-        $indiv[$key] -> setIteration($_POST[$valeur]);
     }
-    //var_dump($monTab[]);
-    //echo "toto";
 
+    // détermine un nombre aléatoire parmi les objets disponibles
     do
     {
-        $numAlea=rand(0,count($indiv));
-    } while(in_array($numAlea,$monTab)<>true);
+        $numAlea = rand(0,count($indiv));
+    } while(in_array($numAlea,$monTab) <> true);
 
-    // code de triche
-    /*
-    if ($_POST["valeurA"]==-1)
-    {
-        $numAlea=9;
-    }
-    */
-
-
-    echo '<div id="divisionReponse">'.chr(13);
 
     foreach($indiv as $key => $individu)
     {
@@ -39,9 +34,8 @@
         {
             echo '<script type="text/javascript" id="runscript">'.chr(13);
             $indiv[$numAlea]->incrementeIteration();
-            echo 'personne'.$numAlea.'.augmenteNbiteration();';
-            echo 'document.monForm.nbFois'.$numAlea.'.value='.$indiv[$numAlea]->getIteration().chr(13);
-            echo 'nbAleatoire='.$numAlea.';';
+            echo 'eval(personne'.$numAlea.'.setNbiteration('.$indiv[$numAlea]->getIteration().'));'.chr(13);
+            echo 'nbAleatoire='.$numAlea.';'.chr(13);
             echo '</script>'.chr(13);
             echo "<p id='selection' style='color:red;'>".$key." ".$individu->infosCandidat()."</p>";
         }
@@ -50,5 +44,4 @@
             echo "<p id='nom".$key."'>".$key." ".$individu->infosCandidat().""."</p>";
         }
     }
-    echo '</div>'.chr(13);
 ?>

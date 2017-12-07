@@ -43,6 +43,8 @@
             var valMax = 0;
             var persmax = 0;
             var i = 0;
+            var machaine = "";
+            var envoi = "";
             /**
             * fonction qui permet de creer l'objet ajax (appela ici xhr)
             */
@@ -80,7 +82,7 @@
                 // reinitialiser les compteurs
                 for (i = 0; i <= maxnbpers; i++) 
                 {
-                    eval("document.monForm.nbFois"+i+".value = 0;");
+                    eval("personne"+i+".setNbiteration(0);");
                 }
                 appelAjax();
             }
@@ -91,6 +93,7 @@
                 document.getElementById("pause").disabled = false;
                 document.getElementById("reinit").disabled = true;
                 
+                // reinitialisation des tailles de résultats
                 document.getElementById('nbTourRestant').style.fontWeight="normal";
                 document.getElementById('nbTourRestant').style.right="500px";
                 document.getElementById('nbTourRestant').style.fontSize="500%";
@@ -102,10 +105,11 @@
                     // On ne fait quelque chose que si on a tout recupere et que le serveur est ok
                     if(xhr.readyState == 4 && xhr.status == 200) {
                         // recoit la reponse de ajax et stocke la valeur dans laReponse
-
                         laReponse = xhr.responseText;
                         /* On remplit l'element de la page en cours appellee (document) qui a un formulaire qui s'appelle monForm et             un element appele champsA */
                         document.getElementById('affiche').innerHTML = laReponse;
+                        //alert(laReponse);
+
                         eval(document.getElementById("runscript").innerHTML);
                         if (fin == true) 
                         {
@@ -122,7 +126,6 @@
                                     valmax = val;
                                     persmax = i;
                                 }
-                                eval("personne"+i+".nbiteration = 0;");
                             }
                             if (persmax != nbAleatoire)
                             {
@@ -131,7 +134,8 @@
                                 eval('document.getElementById("nom'+persmax+'").style.fontWeight="bold";');
                             } 
                             eval("document.monForm.cle"+persmax+".checked=false;");
-                           
+                            // si toutes les cases sont décochées, on recoche.  TODO
+
                             machaine="Le candidat est "+eval("personne"+persmax+".nom")+" "+eval("personne"+persmax+".prenom")+" <small>(sélectionné "+valmax+" fois)</small>.";
                             eval('document.getElementById("nbTourRestant").innerHTML = machaine;');
                         }
@@ -146,32 +150,36 @@
                 valA = document.monForm.champsA.value;
                 nbReste = valA - nbTour;
                 //xhr.send("valeurA="+valA); // on indique le nom du Post (valeurA) et sa valeur valA
-                <?php
-                    echo 'machaine="";'.chr(13);
-                    echo 'envoi="valeurA="+nbReste;'.chr(13);
-                    foreach ($indiv as $key => $individu) 
+
+                // Transcription de l'objet en texte
+                envoi = "valeurA="+nbReste;
+                for (i = 0; i <= maxnbpers; i++) 
+                {
+                    if (eval("personne"+i+".cocheTF") == 1)
                     {
-                        $val="document.monForm.cle".$key.".checked";
-                        echo "val".$key."=".$val.";".chr(13);
-                        echo 'envoi+="& cle'.$key.'=" + val'.$key.";".chr(13);
-                        $valb="document.monForm.nbFois".$key.".value";
-                        echo "nbFois".$key."=".$valb.";".chr(13);
-                        echo 'envoi+="& nbFois'.$key.'=" + nbFois'.$key.";".chr(13);
+                        //alert("nom = "+eval("personne"+i+".nom")+" nb = "+eval("personne"+i+".nbiteration"));
+                        envoi = envoi+" & personne"+i+"nom="+eval("personne"+i+".nom");
+                        envoi = envoi+" & personne"+i+"prenom="+eval("personne"+i+".prenom");
+                        envoi = envoi+" & personne"+i+"nbiteration="+eval("personne"+i+".nbiteration");
+                        envoi = envoi+" & personne"+i+"nombreSelection="+eval("personne"+i+".nombreSelection");
+                        envoi = envoi+" & personne"+i+"cocheTF=true";
                     }
-                    //echo "alert(envoi);";
-                    echo 'xhr.send(envoi);'.chr(13);
-                ?>
+                }
+                envoi = envoi+" & maxnbpers="+maxnbpers;
+                xhr.send(envoi);
+
                 if (nbTour < valA) 
                 {
                     myVar = setTimeout(function(){appelAjax()}, 300);
-                    document.getElementById('nbTourRestant').innerHTML=valA-nbTour;
+                    document.getElementById('nbTourRestant').innerHTML = valA - nbTour;
                     nbTour = nbTour + 1;
                     fin = false;
                 }
-                else {
-                    document.getElementById('nbTourRestant').style.fontSize="1.2em";
-                    document.getElementById('nbTourRestant').style.fontWeight="bold";
-                    document.getElementById('nbTourRestant').style.right="300px";
+                else 
+                {
+                    document.getElementById('nbTourRestant').style.fontSize   = "1.2em";
+                    document.getElementById('nbTourRestant').style.fontWeight = "bold";
+                    document.getElementById('nbTourRestant').style.right      = "300px";
                     stopProg();
                     nbTour = 1;
                     fin = true;
@@ -180,7 +188,7 @@
 
             function appelProg()
             {
-                myVar = setTimeout(function(){appelAjax()}, 500);
+                myVar = setTimeout(function(){appelAjax()}, 300);
             }
 
             function stopProg() {
@@ -192,7 +200,6 @@
             function resetProg() {
                 document.getElementById('affiche').innerHTML = "";
                 document.getElementById('nbTourRestant').innerHTML = "";
-
             }
 
         </script>
@@ -203,10 +210,10 @@
             echo '<form name="monForm" method="post" action="#" onsubmit="return false;">';
             foreach ($indiv as $key => $individu) 
             {
-                echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().' <input type="hidden" name="nbFois'.$key.'" size=1 value="'.$individu->getNbSelection().'"><br/>';
+                echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().'<br/>';
             }
         ?>
-        <input type="text"   value="10" name="champsA">
+        <input type="text"   value="1" name="champsA">
         <input type="submit" value="Go"    onClick="premierAppelAjax(); return false;" id="go">
         <input type="Button" value="Stop"  onClick="stopProg();" id="pause">
         <input type="reset"  value="Reset" onClick="resetProg();" id="reinit">
