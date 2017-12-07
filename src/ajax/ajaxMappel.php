@@ -44,11 +44,11 @@
             echo 'document.monForm.nbFois'.$numAlea.'.value='.$indiv[$numAlea]->getIteration().chr(13);
             echo 'nbAleatoire='.$numAlea.';';
             echo '</script>'.chr(13);
-            echo "<tr><td><div id='selection' style='color:red'>".$key." ".$individu->infosCandidat()."</td><td style='color:red'>".drawCounter($individu->getIteration())."</td></tr></div>";
+            echo "<tr><td><div id='selection' style='color:red'>".$key." ".$individu->infosCandidat()."</td><td id='selection-counter' style='color:red'>".drawCounter($individu->getIteration())."</td></tr></div>";
         }
         else
         {
-            echo "<tr><td><div id='nom".$key."'>".$key." ".$individu->infosCandidat()."</td><td>".drawCounter($individu->getIteration())."</td></tr></div>";
+            echo "<tr><td><div id='nom".$key."'>".$key." ".$individu->infosCandidat()."</td><td id='count".$key."'>".drawCounter($individu->getIteration())."</td></tr></div>";
         }
     }
     echo '</table>';

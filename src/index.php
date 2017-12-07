@@ -127,8 +127,10 @@
                             if (persmax != nbAleatoire)
                             {
                                 document.getElementById("selection").style.color = "black";
+                                document.getElementById("selection-counter").style.color = "black";
                                 eval('document.getElementById("nom'+persmax+'").style.color="red";');
                                 eval('document.getElementById("nom'+persmax+'").style.fontWeight="bold";');
+                                eval('document.getElementById("count'+persmax+'").style.color="red";');
                             } 
                             eval("document.monForm.cle"+persmax+".checked=false;");
                            
