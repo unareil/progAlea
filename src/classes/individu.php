@@ -8,7 +8,7 @@
         public function __construct($Lname,$Fname)
         {
             $this->_firstName = $Fname;
-            $this->_lastName = $Lname;
+            $this->_lastName  = $Lname;
             $this->_iteration = 0;
         }
 
@@ -36,15 +36,30 @@
         {
             return $this->_firstName;
         }
-
-        public function augmenteIteration()
-        {
-            $this->_iteration++;
-        }
         
         public function getIteration()
         {
             return $this->_iteration;
+        }
+
+        public function genererClassJavascript()
+        {
+            echo 'function Indivdu(nom, prenom, nbiteration) 
+            {
+                this.nom = nom;
+                this.prenom = prenom;
+                this.nbiteration = nbiteration;
+
+                this.augmenteNbiteration = function()
+                {
+                    this.nbiteration = this.nbiteration + 1;
+                }
+            }'.chr(13);
+        } 
+
+        public function genererObjetJavascript($num)
+        {
+            echo ' var personne'.$num.' = new Indivdu("'.$this->_lastName.'","'.$this->_firstName.'",'.$this->_iteration.');'.chr(13);
         }
 
         public function __destruct()
