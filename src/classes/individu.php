@@ -21,7 +21,7 @@
 
         public function infosCandidat() 
         {
-            return $this->_lastName." ".$this->_firstName." (".$this->_iteration.")";
+            return $this->_lastName." ".$this->_firstName;
         }
 
         public function setNom($Lname)
@@ -93,6 +93,8 @@
         {
             echo ' var personne'.$num.' = new Indivdu("'.$this->_lastName.'","'.$this->_firstName.'",'.$this->_iteration.','.$this->_nbSelection.');'.chr(13);
         }
+
+
 
         public function __destruct()
         {
