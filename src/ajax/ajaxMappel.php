@@ -27,6 +27,7 @@
         $numAlea=9;
     }
     */
+    echo '<div id="divisionReponse">'.chr(13);
 
     foreach($indiv as $key => $individu)
     {
@@ -43,4 +44,5 @@
             echo "<p id='nom".$key."'>".$key." ".$individu->infosIndividu().""."</p>";
         }
     }
+    echo '</div>'.chr(13);
 ?>
