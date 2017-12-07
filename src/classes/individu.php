@@ -58,7 +58,7 @@
 
         public function incrementeIteration()
         {
-            $this->_iteration++;
+            $this->_iteration = $this->_iteration + 1;
         }
 
         public function getNbSelection()
@@ -106,7 +106,7 @@
             }'.chr(13);
 
             // déclare le tableau des objets
-            //echo 'var tabIndivdu = [];'.chr(13);
+            echo 'var tabIndivdu = [];'.chr(13);
         }
 
         public function genererObjetJavascript($num)
@@ -114,7 +114,7 @@
             echo ' var personne'.$num.' = new Indivdu("'.$this->_lastName.'","'.$this->_firstName.'",'.$this->_iteration.','.$this->_nbSelection.','.$this->_coche.');'.chr(13);
 
             // Ajoute l'objet au tableau d'objet
-            //echo 'tabIndivdu.push(personne'.$num.')'.chr(13);
+            echo 'tabIndivdu.push(personne'.$num.')'.chr(13);
         }
 
         public function __destruct()

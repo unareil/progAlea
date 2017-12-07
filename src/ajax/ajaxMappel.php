@@ -1,9 +1,6 @@
 <?php
     require_once("../classes/individu.php");
-    $monTab[] =-1;
-
-    $maxnbpers = $_POST["maxnbpers"];
-
+    $maxnbpers = intval($_POST["maxnbpers"]);
 
     // Recopie les objets du javascript
     for ($i = 0; $i <= $maxnbpers; $i++) 
@@ -17,34 +14,37 @@
         if(isset($_POST[$nom]))
         {
             $indiv[] = new Individu($_POST[$nom],$_POST[$prenom],$_POST[$nbiteration],$_POST[$nombreSelection],$_POST[$cocheTF]);
-            $monTab[] = $i;
+            $monTab[] = $i;      
         }
     }
-
+    
     // détermine un nombre aléatoire parmi les objets disponibles
     do
     {
-        $numAlea = rand(0,count($indiv));
+        $numAlea = rand(0,intval($maxnbpers));
     } while(in_array($numAlea,$monTab) <> true);
 
 
     echo '<table cellpadding="7px">';
-    foreach($indiv as $key => $individu)
+
+    for ($i = 0; $i < sizeof($monTab); $i++) 
     {
-        if ($key == $numAlea) 
+        if ($monTab[$i] == $numAlea)
         {
             echo '<script type="text/javascript" id="runscript">'.chr(13);
-            $indiv[$numAlea]->incrementeIteration();
-            echo 'eval(personne'.$numAlea.'.setNbiteration('.$indiv[$numAlea]->getIteration().'));'.chr(13);
+            $indiv[$i]->incrementeIteration();
+            echo 'eval(personne'.$numAlea.'.setNbiteration('.$indiv[$i]->getIteration().'));'.chr(13);
             echo 'nbAleatoire='.$numAlea.';'.chr(13);
             echo '</script>'.chr(13);
-            echo "<tr><td><div id='selection' style='color:red'>".$key." ".$individu->infosCandidat()."</td><td id='selection-counter' style='color:red'>".drawCounter($individu->getIteration())."</td></tr></div>";
+
+            echo "<tr><td><div id='nom".$numAlea."' style='color:red'>".$indiv[$i]->infosCandidat()."</td><td id='count".$numAlea."' style='color:red'>".drawCounter($indiv[$i]->getIteration())."</td></tr></div>";
         }
         else
         {
-            echo "<tr><td><div id='nom".$key."'>".$key." ".$individu->infosCandidat()."</td><td id='count".$key."'>".drawCounter($individu->getIteration())."</td></tr></div>";
+            echo "<tr><td><div id='nom".$monTab[$i]."'>".$indiv[$i]->infosCandidat()."</td><td id='count".$monTab[$i]."'>".drawCounter($indiv[$i]->getIteration())."</td></tr></div>";
         }
     }
+
     echo '</table>';
     echo '</div>'.chr(13);
 
