@@ -36,7 +36,7 @@
             // on supprime tous les objets xhr qui trainent...
             var xhr = null;
             var myVar;
-            var nbTour = 0;
+            var nbTour = 1;
             var nbAleatoire = 0;
             var fin = false;
             var val = 0;
@@ -152,7 +152,7 @@
                     //echo "alert(envoi);";
                     echo 'xhr.send(envoi);'.chr(13);
                 ?>
-                if (nbTour <= valA) 
+                if (nbTour < valA) 
                 {
                     myVar = setTimeout(function(){appelAjax()}, 500);
                     document.getElementById('nbTourRestant').innerHTML=valA-nbTour;
@@ -164,7 +164,7 @@
                     document.getElementById('nbTourRestant').style.fontWeight="bold";
                     document.getElementById('nbTourRestant').style.right="300px";
                     stopProg();
-                    nbTour = 0;
+                    nbTour = 1;
                     fin = true;
                 }
             }
