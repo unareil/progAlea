@@ -17,7 +17,7 @@
         if(isset($_POST[$nom]))
         {
             $indiv[] = new Individu($_POST[$nom],$_POST[$prenom],$_POST[$nbiteration],$_POST[$nombreSelection],$_POST[$cocheTF]);
-            $monTab[]=$i;
+            $monTab[] = $i;
         }
     }
 
@@ -80,12 +80,8 @@
                 // this is the last one so we close tags
 
             }
-        
         }
-
         $elem = $elem.'</strong>';
         return $elem;
     }
-
-
 ?>

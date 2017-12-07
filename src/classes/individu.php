@@ -7,30 +7,13 @@
         private $_nbSelection;
         private $_coche;
 
-        public function __construct()
+        public function __construct($un,$deux,$trois=0,$quatre=0,$cinq=true)
         {
-            // Permets de savoir le nombre d’arguments qui a été passé à la fonction.
-            $nombreArguments = func_num_args();
-            // Permets, tout comme sa définition le dit, d’obtenir la liste d’arguments sous forme de tableau. (L’indice 0 = argument #1)
-            $args = func_get_args();
-
-            switch ($nombreArguments) {
-                case 5:
-                
-                    $this->_firstName = $args[0];
-                    $this->_lastName  = $args[1];
-                    $this->_iteration = $args[2];
-                    $this->_nbSelection = $args[3];
-                    $this->_coche = $args[4];
-                    break;
-                 default:
-                    $this->_firstName = $args[0];
-                    $this->_lastName  = $args[1];
-                    $this->_iteration = 0;
-                    $this->_nbSelection = 0;
-                    $this->_coche = true;
-                    break;
-            }
+            $this->_firstName = $un;
+            $this->_lastName  = $deux;
+            $this->_iteration = $trois;
+            $this->_nbSelection = $quatre;
+            $this->_coche = $cinq;
         }
 
         public function infosIndividu() 
@@ -75,7 +58,7 @@
 
         public function incrementeIteration()
         {
-            $this->_iteration = $this->_iteration + 1;
+            $this->_iteration++;
         }
 
         public function getNbSelection()
@@ -133,8 +116,6 @@
             // Ajoute l'objet au tableau d'objet
             //echo 'tabIndivdu.push(personne'.$num.')'.chr(13);
         }
-
-
 
         public function __destruct()
         {
