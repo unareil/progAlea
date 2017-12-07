@@ -75,6 +75,16 @@
                 appelAjax;
             }
             
+            function premierAppelAjax()
+            {
+                // reinitialiser les compteurs
+                for (i = 0; i <= maxnbpers; i++) 
+                {
+                    eval("document.monForm.nbFois"+i+".value = 0;");
+                }
+                appelAjax();
+            }
+
             function appelAjax()
             {
                 document.getElementById("go").disabled = true;
@@ -104,7 +114,7 @@
 
                             valmax = personne0.nbiteration;
                             persmax = 0;
-                            for (i = 0; i < maxnbpers; i++) 
+                            for (i = 0; i <= maxnbpers; i++) 
                             {
                                 eval("val = personne"+i+".nbiteration;");
                                 if (val > valmax)
@@ -121,10 +131,9 @@
                                 eval('document.getElementById("nom'+persmax+'").style.fontWeight="bold";');
                             } 
                             eval("document.monForm.cle"+persmax+".checked=false;");
+                           
                             machaine="Le candidat est "+eval("personne"+persmax+".nom")+" "+eval("personne"+persmax+".prenom")+" sélectionnée "+valmax+" fois.";
                             eval('document.getElementById("nbTourRestant").innerHTML = machaine;');
-                            eval("personne"+persmax+".augmenteNombreSelection();");
-                            eval('document.monForm.nbFois'+persmax+'.value = personne'+persmax+'.nombreSelection;');
                         }
                     }
                 }
@@ -183,6 +192,7 @@
             function resetProg() {
                 document.getElementById('affiche').innerHTML = "";
                 document.getElementById('nbTourRestant').innerHTML = "";
+
             }
 
         </script>
@@ -193,11 +203,11 @@
             echo '<form name="monForm" method="post" action="#" onsubmit="return false;">';
             foreach ($indiv as $key => $individu) 
             {
-                echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().'<input type="text" name="nbFois'.$key.'" size=1 value="'.$individu->getNbSelection().'"><br/>';
+                echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().' <input type="hidden" name="nbFois'.$key.'" size=1 value="'.$individu->getNbSelection().'"><br/>';
             }
         ?>
         <input type="text"   value="10" name="champsA">
-        <input type="submit" value="Go"    onClick="appelAjax(); return false;" id="go">
+        <input type="submit" value="Go"    onClick="premierAppelAjax(); return false;" id="go">
         <input type="Button" value="Stop"  onClick="stopProg();" id="pause">
         <input type="reset"  value="Reset" onClick="resetProg();" id="reinit">
         </form>

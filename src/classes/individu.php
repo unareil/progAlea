@@ -19,6 +19,11 @@
             return $this->_lastName." ".$this->_firstName;
         }
 
+        public function infosCandidat() 
+        {
+            return $this->_lastName." ".$this->_firstName." (".$this->_iteration.")";
+        }
+
         public function setNom($Lname)
         {
             $this->_lastName = $Lname;
@@ -43,10 +48,20 @@
         {
             return $this->_iteration;
         }
+        
+        public function setIteration($num)
+        {
+            $this->_iteration = $num;
+        }
 
         public function getNbSelection()
         {
             return $this->_nbSelection;
+        }
+
+        public function setNbSelection($num)
+        {
+            $this->_nbSelection = $num;
         }
 
         public function genererClassJavascript()
