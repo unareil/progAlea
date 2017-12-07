@@ -33,7 +33,7 @@
     {
         if ($key == $numAlea) {
             echo '<script type="text/javascript" id="runscript">'.chr(13);
-            echo 'document.monForm.nbFois'.$key.'.value=Number(document.monForm.nbFois'.$key.'.value)+1'.chr(13);
+            //echo 'document.monForm.nbFois'.$key.'.value=Number(document.monForm.nbFois'.$key.'.value)+1'.chr(13);
             echo 'nbAleatoire='.$numAlea.';';
             echo 'personne'.$numAlea.'.augmenteNbiteration();';
             echo '</script>'.chr(13);

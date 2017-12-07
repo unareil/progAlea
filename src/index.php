@@ -97,7 +97,8 @@
                         /* On remplit l'element de la page en cours appellee (document) qui a un formulaire qui s'appelle monForm et             un element appele champsA */
                         document.getElementById('affiche').innerHTML = laReponse;
                         eval(document.getElementById("runscript").innerHTML);
-                        if (fin==true) {
+                        if (fin==true) 
+                        {
                             document.getElementById("go").disabled = false;
                             document.getElementById("reinit").disabled = false;
 
@@ -122,6 +123,8 @@
                             eval("document.monForm.cle"+persmax+".checked=false;");
                             machaine="Le candidat est "+eval("personne"+persmax+".nom")+" "+eval("personne"+persmax+".prenom")+" sélectionnée "+valmax+" fois.";
                             eval('document.getElementById("nbTourRestant").innerHTML = machaine;');
+                            eval("personne"+persmax+".augmenteNombreSelection();");
+                            eval('document.monForm.nbFois'+persmax+'.value = personne'+persmax+'.nombreSelection;');
                         }
                     }
                 }
@@ -190,7 +193,7 @@
             echo '<form name="monForm" method="post" action="#" onsubmit="return false;">';
             foreach ($indiv as $key => $individu) 
             {
-                echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().'<input type="hidden" name="nbFois'.$key.'" size=1><br/>';
+                echo '<input type="checkBox" name="cle'.$key.'" checked>'.$individu->infosIndividu().'<input type="text" name="nbFois'.$key.'" size=1 value="'.$individu->getNbSelection().'"><br/>';
             }
         ?>
         <input type="text"   value="10" name="champsA">
